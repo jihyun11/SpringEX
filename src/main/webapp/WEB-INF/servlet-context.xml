@@ -24,6 +24,7 @@
         <property name="formatters">
             <set>
                 <bean class="com.example.webstudy.controller.formatter.LocalDateFormatter"/>
+                <bean class="com.example.webstudy.controller.formatter.CheckboxFormatter"/>
             </set>
         </property>
     </bean>
