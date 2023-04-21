@@ -42,6 +42,40 @@
             </nav>
         </div>
     </div>
+
+    <div class="row content">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Search</h5>
+                    <form action="/todo/list" method="get">
+                        <input type="hidden" name="size" value="${pageRequestDTO.size}">
+                        <div class="mb-3">
+                            <input type="checkbox" name="finished" ${pageRequestDTO.finished?"checked":""}>완료여부
+                        </div>
+                        <div class="mb-3">
+                            <input type="checkbox" name="types" value="t" ${pageRequestDTO.checkType("t")?"checked":""}>제목
+                            <input type="checkbox" name="types" value="w" ${pageRequestDTO.checkType("w")?"checked":""}>작성자
+                            <input type="text" name="keyword" class="form-control" value='<c:out value="${pageRequestDTO.keyword}"/>'>
+                        </div>
+                        <div class="input-group mb-3 dueDateDiv">
+                            <input type="date" name="form" class="form-control" value="$pageRequestDTO.form">
+                            <input type="date" name="to" class="form-control" value="$pageRequestDTO.to">
+
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="float-end">
+                                <button class="btn btn-primary" type="submit">Search</button>
+                                <button class="btn btn-info clearBtn" type="reset">Clear</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row content">
         <div class="col">
             <div class="card">
@@ -61,11 +95,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${dtoList}" var="dto">
+                        <c:forEach items="${responseDTO.dtoList}" var="dto">
                             <tr>
                                 <th scope="row"><c:out value="${dto.tno}"/></th>
                                 <td><a href="/todo/read?tno=${dto.tno}" class="text-decoration-none"><c:out value="${dto.title}"/> </a> </td>
-                                <td><c:out value="${dto.title}"/></td>
+<%--                                <td><c:out value="${dto.title}"/></td>--%>
                                 <td><c:out value="${dto.writer}"/></td>
                                 <td><c:out value="${dto.dueDate}"/></td>
                                 <td><c:out value="${dto.finished}"/></td>
@@ -73,6 +107,15 @@
                         </c:forEach>
                         </tbody>
                     </table>
+
+<%--                    <div class="float-end">--%>
+<%--                        <ul class="pagination flex-wrap">--%>
+<%--                            <c:forEach  var="num" begin="${responseDTO.start}" end="${responseDTO.end}">--%>
+<%--                                <li class="page-item"><a class="page-link" href="#">${num}</a></li>--%>
+<%--                            </c:forEach>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+
                 </div>
             </div>
 

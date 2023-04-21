@@ -1,6 +1,8 @@
 package com.example.webstudy.controller;
 
+import com.example.webstudy.dto.PageRequestDTO;
 import com.example.webstudy.dto.TodoDTO;
+import com.example.webstudy.service.LoanService;
 import com.example.webstudy.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,11 +25,25 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @RequestMapping("/list")
-    public void list(Model model) {
 
-        log.info("todo list....");
-        model.addAttribute("dtoList", todoService.getAll());
+//    @RequestMapping("/list")
+//    public void list(Model model) {
+//
+//        log.info("todo list....");
+//
+//
+//        model.addAttribute("dtoList", todoService.getList(new PageRequestDTO()));
+//    }
+
+    @GetMapping("/list")
+    public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult, Model model) {
+        log.info(pageRequestDTO);
+
+        if(bindingResult.hasErrors()) {
+            pageRequestDTO = PageRequestDTO.builder().build();
+
+        }
+        model.addAttribute("responseDTO", todoService.getList(pageRequestDTO));
     }
 
     @GetMapping("/register")
