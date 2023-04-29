@@ -12,13 +12,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanDTO {
-
-
-
     @NotEmpty
-    private String number;
-
+    private String jumin;
     private String address;
-    private int 대출일;
-    private int 상환예정일;
+    private int loanMoney;
+    private String exDate;
 }

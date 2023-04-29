@@ -10,16 +10,15 @@
 <head>
     <title>Title</title>
 </head>
-number;
-private String address;
-private int 대출일;
-private int 상환예정일;
+
 <body>
 <form action="/todo/loan" method="post">
-대출일: <input type="text" id="number">
-상환예정일: <input type="text" id="상환예정일">
-대출일: <input type="text" id="대출일">
-주소: <input type="text" id="address">
+주민번호: <input type="text" id="jumin" name="jumin"><br>
+상환예정일: <input type="date" id="exDate" name="exDate"><br>
+대출금: <input type="number" id="loanMoney" name="loanMoney"><br>
+주소: <input type="text" id="address" name="address"><br>
+    <input type="submit" value="제출">
+
 </form>
 </body>
 </html>

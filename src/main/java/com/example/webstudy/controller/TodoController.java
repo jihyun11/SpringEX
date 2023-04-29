@@ -1,5 +1,6 @@
 package com.example.webstudy.controller;
 
+import com.example.webstudy.dto.LoanDTO;
 import com.example.webstudy.dto.PageRequestDTO;
 import com.example.webstudy.dto.TodoDTO;
 import com.example.webstudy.service.LoanService;
@@ -24,16 +25,25 @@ import javax.validation.Valid;
 public class TodoController {
 
     private final TodoService todoService;
+    private final LoanService loanService;
 
 
-//    @RequestMapping("/list")
-//    public void list(Model model) {
-//
-//        log.info("todo list....");
-//
-//
-//        model.addAttribute("dtoList", todoService.getList(new PageRequestDTO()));
-//    }
+    @GetMapping("/loan")
+    public void loanGet(LoanDTO loanDTO) {
+
+        log.info("{}",loanDTO);
+
+    }
+
+    @PostMapping("/loan")
+    public void loanPost(LoanDTO loanDTO) {
+        double loan = loanService.loan(loanDTO);
+
+
+
+        log.info("{}", loan);
+    }
+
 
     @GetMapping("/list")
     public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult, Model model) {
