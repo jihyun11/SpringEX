@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @Builder
 public class LoanVO {
 
-    private String number;
+    private String jumin;
     private String address;
-    private int 대출일;
-    private int 상환예정일;
+    private int loanMoney;
+    private String exDate;
 }
