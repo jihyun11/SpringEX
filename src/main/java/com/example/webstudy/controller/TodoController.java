@@ -3,7 +3,7 @@ package com.example.webstudy.controller;
 import com.example.webstudy.dto.LoanDTO;
 import com.example.webstudy.dto.PageRequestDTO;
 import com.example.webstudy.dto.TodoDTO;
-import com.example.webstudy.service.LoanService;
+import com.example.webstudy.service.LoanServicempl;
 import com.example.webstudy.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -25,7 +24,7 @@ import javax.validation.Valid;
 public class TodoController {
 
     private final TodoService todoService;
-    private final LoanService loanService;
+    private final LoanServicempl loanService;
 
 
     @GetMapping("/loan")
@@ -36,12 +35,11 @@ public class TodoController {
     }
 
     @PostMapping("/loan")
-    public void loanPost(LoanDTO loanDTO) {
-        double loan = loanService.loan(loanDTO);
+    public void loanPost(LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
+        log.info("Post loan todo register....");
 
-
-
-        log.info("{}", loan);
+        log.info(loanDTO);
+        loanService.register(loanDTO);
     }
 
 
