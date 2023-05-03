@@ -6,4 +6,6 @@ import org.springframework.stereotype.Service;
 public interface LoanService {
 
     void register(LoanDTO loanDTO);
+
+    void config(LoanDTO loanDTO);
 }

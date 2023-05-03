@@ -35,12 +35,32 @@ public class TodoController {
     }
 
     @PostMapping("/loan")
-    public void loanPost(LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
+    public String loanPost(LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
+        log.info("Post loan todo register....");
+
+        log.info(loanDTO);
+        loanService.register(loanDTO);
+
+        return "redirect:/todo/loanconfig";
+
+    }
+
+    @GetMapping("/loanconfig")
+    public void loanConfigGet(LoanDTO loanDTO) {
+
+        log.info("{}",loanDTO);
+
+    }
+
+    @PostMapping("/loanconfig")
+    public void loanConfigPost(LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
         log.info("Post loan todo register....");
 
         log.info(loanDTO);
         loanService.register(loanDTO);
     }
+
+
 
 
     @GetMapping("/list")

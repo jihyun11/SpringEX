@@ -7,6 +7,10 @@
     <insert id="insert">
         insert into loan_todo (jumin, address, loanMoney, exDate ) values (#{jumin}, #{address}, #{loanMoney}, #{exDate})
     </insert>
+
+    <select id="select">
+        select jumin from loan_todo where #{jumin}
+    </select>
     
 
 </mapper>

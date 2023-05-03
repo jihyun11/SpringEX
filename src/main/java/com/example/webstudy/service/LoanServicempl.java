@@ -48,4 +48,13 @@ public class LoanServicempl implements LoanService{
         loanMapper.insert(loanVO);
 
     }
+
+    @Override
+    public void config(LoanDTO loanDTO) {
+        log.info(modelMapper);
+        LoanVO loanVO = modelMapper.map(loanDTO, LoanVO.class);
+        log.info(loanDTO);
+
+        loanMapper.select(loanVO);
+    }
 }
