@@ -1,8 +1,10 @@
 package com.example.webstudy.controller;
 
+import com.example.webstudy.domain.LoanVO;
 import com.example.webstudy.dto.LoanDTO;
 import com.example.webstudy.dto.PageRequestDTO;
 import com.example.webstudy.dto.TodoDTO;
+import com.example.webstudy.houseloan.Loan;
 import com.example.webstudy.service.LoanServicempl;
 import com.example.webstudy.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -53,11 +53,41 @@ public class TodoController {
     }
 
     @PostMapping("/loanconfig")
-    public void loanConfigPost(LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
+    public String loanConfigPost(@ModelAttribute("loanDTO") LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
         log.info("Post loan todo register....");
 
         log.info(loanDTO);
-        loanService.register(loanDTO);
+        loanService.config(loanDTO);
+
+        redirectAttributes.addAttribute("jumin", loanDTO.getJumin());
+        return "redirect:/todo/loanresult";
+    }
+
+
+//    @PostMapping("/loanconfig")
+//    public String loanConfigPost(LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
+//        log.info("Post loan todo register....");
+//
+//        log.info(loanDTO);
+//        loanService.config(loanDTO);
+//
+//        return "redirect:/todo/loanresult";
+//    }
+
+//    @GetMapping("/loanresult")
+//    public void loanResultGet(LoanDTO loanDTO, Model model) {
+//        log.info("Post loan todo result....");
+//
+//        model.addAttribute("responseDTO", loanService.config(loanDTO));
+//
+//    }
+
+    @GetMapping("/loanresult")
+    public void loanResultGet(String jumin, Model model) {
+        LoanDTO loanDTO = loanService.getJumin(jumin);
+        log.info(loanDTO);
+
+        model.addAttribute("dto", loanDTO);
     }
 
 

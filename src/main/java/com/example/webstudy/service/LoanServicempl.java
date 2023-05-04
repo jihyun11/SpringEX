@@ -1,9 +1,10 @@
 package com.example.webstudy.service;
 
 import com.example.webstudy.domain.LoanVO;
+import com.example.webstudy.domain.TodoVO;
 import com.example.webstudy.dto.LoanDTO;
+import com.example.webstudy.dto.TodoDTO;
 import com.example.webstudy.mapper.LoanMapper;
-import com.example.webstudy.mapper.TodoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -56,5 +57,14 @@ public class LoanServicempl implements LoanService{
         log.info(loanDTO);
 
         loanMapper.select(loanVO);
+    }
+
+    @Override
+    public LoanDTO getJumin(String jumin) {
+        LoanVO loanVO = loanMapper.getjumin(jumin);
+
+        LoanDTO loanDTO = modelMapper.map(loanVO, LoanDTO.class);
+
+        return loanDTO;
     }
 }

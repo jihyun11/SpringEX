@@ -14,8 +14,9 @@
 <h2>대출 실행</h2>
 <form action="/todo/loanconfig" method="post">
 주민번호: <input type="text" id="jumin" name="jumin"><br>
-주소: <input type="text" id="address" name="address"><br>
+<%--주소: <input type="text" id="address" name="address"><br>--%>
 <input type="submit" value="제출">
+
 
 </form>
 </body>

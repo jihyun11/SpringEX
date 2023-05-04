@@ -9,7 +9,11 @@
     </insert>
 
     <select id="select">
-        select jumin from loan_todo where #{jumin}
+        select jumin from loan_todo where jumin = #{jumin} and address = #{address} and exDate = #{exDate}
+    </select>
+
+    <select id="getjumin" resultType="com.example.webstudy.domain.LoanVO">
+        select jumin from loan_todo where jumin = #{jumin} and address = #{address} and exDate = #{exDate}
     </select>
     
 

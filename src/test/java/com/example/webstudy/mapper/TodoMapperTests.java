@@ -1,5 +1,6 @@
 package com.example.webstudy.mapper;
 
+import com.example.webstudy.domain.LoanVO;
 import com.example.webstudy.domain.TodoVO;
 import com.example.webstudy.dto.PageRequestDTO;
 import lombok.extern.log4j.Log4j2;
