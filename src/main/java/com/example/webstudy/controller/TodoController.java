@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/todo")
@@ -45,6 +47,25 @@ public class TodoController {
 
     }
 
+//    @GetMapping("/loanresult")
+//    public void loanResultGet(LoanDTO loanDTO) {
+//
+//        log.info("{}",loanDTO);
+//
+//    }
+
+    @GetMapping("/loanresult")
+    public void loanResultGet(@ModelAttribute("loanDTO") LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
+        log.info("Post loan todo register....");
+
+        log.info(loanDTO);
+        loanService.select2(loanDTO);
+
+        redirectAttributes.addAttribute("jumin", loanDTO.getJumin());
+
+    }
+
+
     @GetMapping("/loanconfig")
     public void loanConfigGet(LoanDTO loanDTO) {
 
@@ -56,11 +77,11 @@ public class TodoController {
     public String loanConfigPost(@ModelAttribute("loanDTO") LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
         log.info("Post loan todo register....");
 
-        log.info(loanDTO);
-        loanService.config(loanDTO);
-
-        redirectAttributes.addAttribute("jumin", loanDTO.getJumin());
-        return "redirect:/todo/loanresult";
+//        log.info(loanDTO);
+//        loanService.config(loanDTO);
+//
+//        redirectAttributes.addAttribute("jumin", loanDTO.getJumin());
+        return "redirect:/todo/loanresult?jumin=" + loanDTO.getJumin();
     }
 
 
@@ -74,21 +95,7 @@ public class TodoController {
 //        return "redirect:/todo/loanresult";
 //    }
 
-//    @GetMapping("/loanresult")
-//    public void loanResultGet(LoanDTO loanDTO, Model model) {
-//        log.info("Post loan todo result....");
-//
-//        model.addAttribute("responseDTO", loanService.config(loanDTO));
-//
-//    }
 
-    @GetMapping("/loanresult")
-    public void loanResultGet(String jumin, Model model) {
-        LoanDTO loanDTO = loanService.getJumin(jumin);
-        log.info(loanDTO);
-
-        model.addAttribute("dto", loanDTO);
-    }
 
 
 

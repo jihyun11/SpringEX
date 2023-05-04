@@ -4,11 +4,15 @@ import com.example.webstudy.domain.LoanVO;
 import com.example.webstudy.domain.TodoVO;
 import com.example.webstudy.dto.LoanDTO;
 import com.example.webstudy.dto.TodoDTO;
+import com.example.webstudy.houseloan.Loan;
 import com.example.webstudy.mapper.LoanMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Log4j2
@@ -56,15 +60,18 @@ public class LoanServicempl implements LoanService{
         LoanVO loanVO = modelMapper.map(loanDTO, LoanVO.class);
         log.info(loanDTO);
 
-        loanMapper.select(loanVO);
+        loanMapper.select2(loanVO);
+
     }
 
     @Override
-    public LoanDTO getJumin(String jumin) {
-        LoanVO loanVO = loanMapper.getjumin(jumin);
+    public void select2(LoanDTO loanDTO) {
+        log.info(modelMapper);
+        LoanVO loanVO = modelMapper.map(loanDTO, LoanVO.class);
+        log.info(loanDTO);
 
-        LoanDTO loanDTO = modelMapper.map(loanVO, LoanDTO.class);
-
-        return loanDTO;
+        loanMapper.select2(loanVO);
     }
+
+
 }

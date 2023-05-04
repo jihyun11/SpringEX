@@ -1,4 +1,5 @@
-<jsp:useBean id="dto" scope="request" type="com.example.webstudy.service.LoanServicempl"/>
+
+
 <%--
   Created by IntelliJ IDEA.
   User: mozzi
@@ -15,11 +16,14 @@
 </head>
 <body>
 <form action="/todo/loanresult" method="get">
-    <input type="text" name="jumin" value=<c:out value="${dto.getJumin(jumin)}">>
-    <input type="text" name="address" value="${dto.address}">
-    <input type="text" name="loanMoney" value="${dto.loanMoney}">
-    <input type="text" name="exDate" value="${dto.exDate}">
+    <tr>
 
+        <td>${loanDTO.jumin}</td> 님의 주소는
+        <td>${loanDTO.address}</td> 이며, 대출 신청 금액은
+        <td>${loanDTO.loanMoney}</td> 원이고, 환급 예정일은
+        <td>${loanDTO.exDate}</td> 입니다.
+    </tr>
+</form>
 
 
 </form>
