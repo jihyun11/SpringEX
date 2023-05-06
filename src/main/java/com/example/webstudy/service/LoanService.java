@@ -11,5 +11,5 @@ public interface LoanService {
 
     void config(LoanDTO loanDTO);
 
-    void select2(LoanDTO loanDTO);
+    LoanDTO select2(String jumin);
 }

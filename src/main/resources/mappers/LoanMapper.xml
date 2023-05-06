@@ -12,8 +12,8 @@
         select jumin from loan_todo where jumin = #{jumin} and address = #{address} and exDate = #{exDate}
     </select>
 
-    <select id="select2" resultType="String">
-        select address, loanMoney, exDate from loan_todo where jumin = #{jumin}
+    <select id="select2" resultType="com.example.webstudy.dto.LoanDTO">
+        select jumin, address, loanMoney, exDate from loan_todo where jumin = #{jumin}
     </select>
 
     

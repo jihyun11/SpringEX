@@ -60,17 +60,15 @@ public class LoanServicempl implements LoanService{
         LoanVO loanVO = modelMapper.map(loanDTO, LoanVO.class);
         log.info(loanDTO);
 
-        loanMapper.select2(loanVO);
+        loanMapper.select2(loanDTO.getJumin());
 
     }
 
     @Override
-    public void select2(LoanDTO loanDTO) {
-        log.info(modelMapper);
-        LoanVO loanVO = modelMapper.map(loanDTO, LoanVO.class);
-        log.info(loanDTO);
+    public LoanDTO select2(String jumin) {
 
-        loanMapper.select2(loanVO);
+        LoanDTO loanDTO = loanMapper.select2(jumin);
+        return loanDTO;
     }
 
 

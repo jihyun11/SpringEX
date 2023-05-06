@@ -55,13 +55,14 @@ public class TodoController {
 //    }
 
     @GetMapping("/loanresult")
-    public void loanResultGet(@ModelAttribute("loanDTO") LoanDTO loanDTO, RedirectAttributes redirectAttributes) {
+    public void loanResultGet(@RequestParam (value = "jumin") String jumin, Model model) {
         log.info("Post loan todo register....");
 
+        log.info(jumin);
+        LoanDTO loanDTO = loanService.select2(jumin);
         log.info(loanDTO);
-        loanService.select2(loanDTO);
 
-        redirectAttributes.addAttribute("jumin", loanDTO.getJumin());
+        model.addAttribute("loanDTO", loanDTO);
 
     }
 
